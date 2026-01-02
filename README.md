@@ -1,7 +1,32 @@
 
 
 # GitHub Actions - 全能型私有化定时任务平台
+```
+CREATE TABLE IF NOT EXISTS users (
+    id BIGSERIAL PRIMARY KEY,
+    username TEXT UNIQUE NOT NULL,
+    hashed_password TEXT NOT NULL
+);
 
+CREATE TABLE IF NOT EXISTS scripts (
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT UNIQUE NOT NULL,
+    code TEXT NOT NULL,
+    requirements TEXT DEFAULT '',
+    cron_exp TEXT NOT NULL,
+    random_delay INTEGER DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    last_run TEXT,
+    last_status TEXT,
+    last_log TEXT DEFAULT '[]'
+);
+
+CREATE TABLE IF NOT EXISTS secrets (
+    id BIGSERIAL PRIMARY KEY,
+    key TEXT UNIQUE NOT NULL,
+    value TEXT NOT NULL
+);
+```
 <div align="center">
 
 ![Docker Image Size](https://img.shields.io/badge/Image%20Size-~1.5GB-blue)
